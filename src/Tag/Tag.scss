@@ -24,12 +24,12 @@
   }
 
   .tagRemoveButton {
-    cursor: pointer;
-    margin-left: 12px;
-    width: 6px;
-    font-size: 6px;
-    line-height: 6px;
-    display: inherit;
+    margin-left: 6px;
+    line-height: 14px;
+  }
+
+  &.tagWithRemoveButton {
+    padding-right: 6px;
   }
 
   &.disabled {
@@ -42,19 +42,13 @@
   }
 }
 
+
 .large {
   height: 36px;
 
   .thumb {
     height: 24px;
     width: 24px;
-  }
-
-  .tagRemoveButton {
-    margin-left: 20px;
-    width: 8px;
-    font-size: 8px;
-    line-height: 8px;
   }
 }
 

@@ -15,6 +15,7 @@ class Tag extends WixComponent {
 
     const className = classNames({
       [styles.tag]: true,
+      [styles.tagWithRemoveButton]: removable && !disabled,
       [styles.large]: size === 'large',
       [styles.tagWrap]: wrap,
       [styles.disabled]: disabled,
@@ -48,7 +49,7 @@ class Tag extends WixComponent {
             event.stopPropagation();
             onRemove(id);
           }}
-          ><CloseButton size="small" theme="close-standard"/></a>}
+          ><CloseButton size="small" theme="close-dark"/></a>}
       </span>
     );
   }
