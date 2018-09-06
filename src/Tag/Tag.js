@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import styles from './Tag.scss';
 import CloseButton from '../CloseButton';
 import WixComponent from '../BaseComponents/WixComponent';
-import Typography from '../Typography';
+import Text from '../Text';
+import noop from 'lodash/noop';
 
 /**
   * A Tag component
@@ -13,43 +14,35 @@ class Tag extends WixComponent {
   render() {
     const {id, children, thumb, removable, onClick, onRemove, size, wrap, disabled, theme, maxWidth} = this.props;
 
-    const className = classNames({
-      [styles.tag]: true,
-      [styles.tagWithRemoveButton]: removable && !disabled,
-      [styles.large]: size === 'large',
-      [styles.tagWrap]: wrap,
-      [styles.disabled]: disabled,
-      [styles[`${theme}Theme`]]: true
-    });
-
-    const innerClassName = classNames({
-      [styles.innerTagWrap]: wrap,
-      [Typography.t4]: true
-    });
-
-    const title = wrap ? children : '';
+    const className = classNames(
+      styles.root,
+      styles[`${theme}Theme`],
+      {
+        [styles.tagWithRemoveButton]: removable && !disabled,
+        [styles.large]: size === 'large',
+        [styles.tagWrap]: wrap,
+        [styles.disabled]: disabled
+      },
+    );
 
     return (
       <span
-        data-hook="tag"
         className={className}
         disabled={disabled}
         id={id}
-        title={title}
+        title={wrap ? children : ''}
         onClick={() => onClick(id)}
-        style={{
-          maxWidth: `${maxWidth}px`
-        }}
+        style={{maxWidth: `${maxWidth}px`}}
         >
         {thumb && <span className={styles.thumb}>{thumb}</span>}
-        <span className={innerClassName}>{children}</span>
+        <Text className={wrap ? styles.innerTagWrap : ''} size={size === 'large' ? 'medium' : 'small'} >{children}</Text>
         {removable && !disabled && <a
           className={styles.tagRemoveButton}
           onClick={event => {
             event.stopPropagation();
             onRemove(id);
           }}
-          ><CloseButton size="small" theme="close-dark"/></a>}
+          ><CloseButton size={size} theme="close-dark"/></a>}
       </span>
     );
   }
@@ -90,11 +83,12 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  onClick: () => {},
-  onRemove: () => {},
+  onClick: noop,
+  onRemove: noop,
   size: 'small',
   removable: true,
-  theme: 'standard'
+  theme: 'standard',
+  wrap: false
 };
 
 export default Tag;

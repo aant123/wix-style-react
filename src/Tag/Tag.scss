@@ -1,7 +1,6 @@
-@import '../common';
+@import '../colors.scss';
 
-.tag {
-  @include FontLight();
+.root {
   box-sizing: border-box;
   position: relative;
   border-radius: 100px;
@@ -42,16 +41,22 @@
   }
 }
 
-
+//Sizes
 .large {
   height: 36px;
+  padding: 2px 18px 2px 18px;
 
   .thumb {
     height: 24px;
     width: 24px;
   }
+  .tagRemoveButton {
+    margin-left: 12px;
+    line-height: 26px;
+  }
 }
 
+//Ellipsis
 .tagWrap {
   overflow: hidden;
 }
@@ -62,13 +67,9 @@
   text-overflow: ellipsis;
 }
 
+//Themes
 .standard-theme {
   background-color: $B40;
-
-  .tagRemoveButton {
-    color: $B10;
-  }
-
   &:hover {
     background-color: $B30;
   }
@@ -76,22 +77,14 @@
 
 .warning-theme {
   background-color: $Y40;
-  .tagRemoveButton {
-    color: white;
+  &:hover {
+    background-color: $Y30;
   }
-}
-
-.warning-theme:hover {
-  background-color: $Y30;
 }
 
 .error-theme {
   background-color: $R40;
-  .tagRemoveButton {
-    color: black;
+  &:hover {
+    background-color: $R30;
   }
-}
-
-.error-theme:hover {
-  background-color: $R30;
 }
