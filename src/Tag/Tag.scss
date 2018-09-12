@@ -6,65 +6,75 @@
   border-radius: 100px;
   display: inline-flex;
   align-items: center;
-  padding: 2px 12px 2px 12px;
-  margin-left: 7px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  height: 24px;
   transition: background-color ease 300ms;
 
   .thumb {
+    //TODO - should be done in the Avatar component
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    width: 18px;
-    height: 18px;
-    left: -6px;
-  }
-
-  .tagRemoveButton {
-    margin-left: 6px;
-    line-height: 14px;
-  }
-
-  &.tagWithRemoveButton {
-    padding-right: 6px;
-  }
-
-  &.disabled {
-    background-color: $GR30;
-    color: $D30;
-
-    &:hover {
-      background-color: $GR30;
-    }
   }
 }
 
 //Sizes
-.large {
-  height: 36px;
-  padding: 2px 18px 2px 18px;
+.small {
+  height: 24px;
+  padding: 0 12px;
+
+  &.withRemoveButton {
+    padding-right: 3px;
+  }
+
+  &.withThumb {
+    padding-left: 3px;
+  }
 
   .thumb {
+    //TODO - sizes should be taken from the Avatar component
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+  }
+
+  .removeButton {
+    margin-left: 6px;
+  }
+}
+
+.large {
+  height: 36px;
+  padding: 0 18px;
+
+
+  &.withRemoveButton {
+    padding-right: 9px;
+  }
+
+  &.withThumb {
+    padding-left: 6px;
+  }
+
+  .thumb {
+    //TODO - sizes should be taken from the Avatar component
     height: 24px;
     width: 24px;
+    margin-right: 12px;
   }
-  .tagRemoveButton {
+
+  .removeButton {
     margin-left: 12px;
-    line-height: 26px;
   }
 }
 
-//Ellipsis
-.tagWrap {
-  overflow: hidden;
-}
 
-.innerTagWrap {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+//Disabled
+.disabled {
+  background-color: $GR30;
+  color: $D30;
+
+  &:hover {
+    background-color: $GR30;
+  }
 }
 
 //Themes
@@ -87,4 +97,15 @@
   &:hover {
     background-color: $R30;
   }
+}
+
+//Ellipsis - TODO, should replace with Text ellipsis once the display-inline is solved
+.tagWrap {
+  overflow: hidden;
+}
+
+.innerTagWrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

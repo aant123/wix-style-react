@@ -109,7 +109,7 @@ class InputWithTags extends React.Component {
         onMouseOut={() => this.handleHover()}
         data-hook={this.props.dataHook}
         >
-        {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
+        {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} className={styles.tag} {...rest}>{label}</Tag>)}
         <span className={classNames(styles.input, {[styles.emptyInput]: !tags.length})} data-hook="inner-input-with-tags">
           <div className={styles.hiddenDiv} style={{fontSize}}>
             {this.state.inputValue}

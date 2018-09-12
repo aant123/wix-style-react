@@ -8,18 +8,61 @@ import Text from '../Text';
 import noop from 'lodash/noop';
 
 /**
-  * A Tag component
-  */
+ * A Tag component
+ */
 class Tag extends WixComponent {
+
+  _renderThumb() {
+    const {thumb} = this.props;
+    return thumb ? <span className={styles.thumb}>{thumb}</span> : null;
+  }
+
+  _renderText() {
+    const {size, wrap, children} = this.props;
+    return (
+      <Text
+        className={wrap ? styles.innerTagWrap : ''}
+        size={size === 'large' ? 'medium' : 'small'}
+        >
+        {children}
+      </Text>
+    );
+  }
+
+  _renderRemoveButton() {
+    const {removable, disabled, size} = this.props;
+    if (removable && !disabled) {
+      return (<CloseButton
+        size={size}
+        theme="close-dark"
+        dataHook="remove-button"
+        className={styles.removeButton}
+        onClick={this._handleRemoveClick}
+        />);
+    } else {
+      return null;
+    }
+  }
+
+  _handleRemoveClick = event => {
+    const {onRemove, id} = this.props;
+    event.stopPropagation();
+    onRemove(id);
+  };
+
   render() {
-    const {id, children, thumb, removable, onClick, onRemove, size, wrap, disabled, theme, maxWidth} = this.props;
+    const {id, thumb, children, removable, onClick, size, wrap, disabled, theme, maxWidth, className: extendingClassName} = this.props;
 
     const className = classNames(
       styles.root,
+      extendingClassName,
       styles[`${theme}Theme`],
+      size === 'large' ? styles.large : styles.medium,
       {
-        [styles.tagWithRemoveButton]: removable && !disabled,
         [styles.large]: size === 'large',
+        [styles.small]: size === 'small',
+        [styles.withRemoveButton]: removable && !disabled,
+        [styles.withThumb]: thumb,
         [styles.tagWrap]: wrap,
         [styles.disabled]: disabled
       },
@@ -28,21 +71,14 @@ class Tag extends WixComponent {
     return (
       <span
         className={className}
-        disabled={disabled}
         id={id}
         title={wrap ? children : ''}
         onClick={() => onClick(id)}
         style={{maxWidth: `${maxWidth}px`}}
         >
-        {thumb && <span className={styles.thumb}>{thumb}</span>}
-        <Text className={wrap ? styles.innerTagWrap : ''} size={size === 'large' ? 'medium' : 'small'} >{children}</Text>
-        {removable && !disabled && <a
-          className={styles.tagRemoveButton}
-          onClick={event => {
-            event.stopPropagation();
-            onRemove(id);
-          }}
-          ><CloseButton size={size} theme="close-dark"/></a>}
+        {this._renderThumb()}
+        {this._renderText()}
+        {this._renderRemoveButton()}
       </span>
     );
   }
@@ -50,6 +86,8 @@ class Tag extends WixComponent {
 
 Tag.propTypes = {
   children: PropTypes.string.isRequired,
+
+  className: PropTypes.string,
 
   /** when set to true this component is disabled  */
   disabled: PropTypes.bool,

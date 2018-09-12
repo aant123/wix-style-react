@@ -15,12 +15,12 @@ describe('Tag', () => {
   });
 
   eyes.it('should render', async () => {
-    autoExampleDriver.setProps({removable: 'false'});
+    autoExampleDriver.setProps({removable: false});
     await eyes.checkWindow('without remove button');
     autoExampleDriver.remount();
     autoExampleDriver.setProps({size: 'large'});
     await eyes.checkWindow('large size');
-    autoExampleDriver.setProps({removable: 'false'});
+    autoExampleDriver.setProps({removable: false});
     await eyes.checkWindow('large size without remove button');
   });
 });
