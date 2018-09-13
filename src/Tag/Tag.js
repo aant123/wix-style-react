@@ -57,15 +57,13 @@ class Tag extends WixComponent {
       styles.root,
       extendingClassName,
       styles[`${theme}Theme`],
-      size === 'large' ? styles.large : styles.medium,
+      styles[`${size}Size`],
       {
-        [styles.large]: size === 'large',
-        [styles.small]: size === 'small',
         [styles.withRemoveButton]: removable && !disabled,
         [styles.withThumb]: thumb,
         [styles.tagWrap]: wrap,
         [styles.disabled]: disabled
-      },
+      }
     );
 
     return (

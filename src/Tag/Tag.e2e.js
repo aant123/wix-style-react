@@ -4,23 +4,35 @@ import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {tagTestkitFactory} from '../../testkit/protractor';
 
-const tagDriver = tagTestkitFactory({dataHook: 'storybook-tag'});
-
 describe('Tag', () => {
   const url = createStoryUrl({kind: '12. Other', story: '12.5 Tag'});
+  const tagDriver = tagTestkitFactory({dataHook: 'story-tag'});
 
   beforeAll(async () => {
     await browser.get(url);
-    await waitForVisibilityOf(tagDriver.element(), 'Cannot find <Tag/>');
+  });
+
+  afterEach(() => {
+    return autoExampleDriver.remount();
   });
 
   eyes.it('should render', async () => {
+    await waitForVisibilityOf(tagDriver.element(), 'Cannot find <Tag/>');
+    await eyes.checkWindow('small size');
     autoExampleDriver.setProps({removable: false});
-    await eyes.checkWindow('without remove button');
+    await eyes.checkWindow('small size: without remove button');
     autoExampleDriver.remount();
     autoExampleDriver.setProps({size: 'large'});
     await eyes.checkWindow('large size');
     autoExampleDriver.setProps({removable: false});
-    await eyes.checkWindow('large size without remove button');
+    await eyes.checkWindow('large size: without remove button');
+  });
+
+  eyes.it('should render themes', async () => {
+    await waitForVisibilityOf(tagDriver.element(), 'Cannot find <Tag/>');
+    autoExampleDriver.setProps({theme: 'error'});
+    await eyes.checkWindow('theme: error');
+    autoExampleDriver.setProps({theme: 'warning'});
+    await eyes.checkWindow('theme: warning');
   });
 });
