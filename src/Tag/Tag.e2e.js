@@ -35,4 +35,10 @@ describe('Tag', () => {
     autoExampleDriver.setProps({theme: 'warning'});
     await eyes.checkWindow('theme: warning');
   });
+
+  eyes.it('should render disabled', async () => {
+    await waitForVisibilityOf(tagDriver.element(), 'Cannot find <Tag/>');
+    autoExampleDriver.setProps({disabled: true});
+    await eyes.checkWindow('disabled');
+  });
 });

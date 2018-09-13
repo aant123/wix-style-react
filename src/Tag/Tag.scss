@@ -66,17 +66,6 @@
   }
 }
 
-
-//Disabled
-.disabled {
-  background-color: $GR30;
-  color: $D30;
-
-  &:hover {
-    background-color: $GR30;
-  }
-}
-
 //Themes
 .standard-theme {
   background-color: $B40;
@@ -98,6 +87,17 @@
     background-color: $R30;
   }
 }
+
+//Disabled
+.disabled {
+  background-color: $GR30;
+  color: $D30;
+
+  &:hover {
+    background-color: $GR30;
+  }
+}
+
 
 //Ellipsis - TODO, should replace with Text ellipsis once the display-inline is solved
 .tagWrap {

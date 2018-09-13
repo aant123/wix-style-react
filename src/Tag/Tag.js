@@ -11,6 +11,7 @@ import noop from 'lodash/noop';
  * A Tag component
  */
 class Tag extends WixComponent {
+  displayName = 'Tag';
 
   _renderThumb() {
     const {thumb} = this.props;
