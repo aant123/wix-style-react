@@ -3,25 +3,7 @@ import {oneOf, bool, string, any} from 'prop-types';
 import style from './Text.st.css';
 import deprecationLog from '../utils/deprecationLog';
 import omit from 'lodash/omit';
-
-export const SIZES = {
-  tiny: 'tiny',
-  small: 'small',
-  medium: 'medium'
-};
-
-export const SKINS = {
-  standard: 'standard',
-  error: 'error',
-  success: 'success',
-  premium: 'premium'
-};
-
-export const WEIGHTS = {
-  thin: 'thin',
-  normal: 'normal',
-  bold: 'bold'
-};
+import {SKINS, SIZES, WEIGHTS} from './constants';
 
 const Text = ({size, secondary, skin, light, bold, weight, tagName, children, ...rest}) => {
   if (bold !== undefined) {
