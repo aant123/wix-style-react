@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './Tag.scss';
 import CloseButton from '../CloseButton';
 import WixComponent from '../BaseComponents/WixComponent';
-import Typography from '../Typography';
+import Text from '../Text';
 
 /**
   * A Tag component
@@ -22,8 +22,7 @@ class Tag extends WixComponent {
     });
 
     const innerClassName = classNames({
-      [styles.innerTagWrap]: wrap,
-      [Typography.t4]: true
+      [styles.innerTagWrap]: wrap
     });
 
     const title = wrap ? children : '';
@@ -41,7 +40,11 @@ class Tag extends WixComponent {
         }}
         >
         {thumb && <span className={styles.thumb}>{thumb}</span>}
-        <span className={innerClassName}>{children}</span>
+        <span className={innerClassName}>
+          <Text size="small" weight="normal">
+            {children}
+          </Text>
+        </span>
         {removable && !disabled && <a
           className={styles.tagRemoveButton}
           onClick={event => {
