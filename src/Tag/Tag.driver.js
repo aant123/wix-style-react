@@ -20,7 +20,7 @@ const tagDriverFactory = ({element}) => {
 
   return {
     exists: () => !!element,
-    isLarge: () => isClassExists(element, 'large'),
+    isLarge: () => isClassExists(element, 'largeSize'),
     isStandardTheme: () => isClassExists(element, 'standardTheme'),
     isWarningTheme: () => isClassExists(element, 'warningTheme'),
     isErrorTheme: () => isClassExists(element, 'errorTheme'),
