@@ -48,14 +48,12 @@ export default class SortableList extends WixComponent {
   };
 
   handleDragStart = () => {
-    console.log('start');
     if (this.props.onDragStart) {
       this.props.onDragStart();
     }
   }
 
   handleDragEnd = () => {
-    console.log('end');
     if (this.props.onDragEnd) {
       this.props.onDragEnd();
     }
@@ -103,6 +101,7 @@ export default class SortableList extends WixComponent {
     return (
       <DragDropContextProvider>
         <Container
+          dataHook={this.props.dataHook}
           className={className}
           total={this.state.items.length}
           {...common}
