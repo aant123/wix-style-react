@@ -51,8 +51,17 @@ class MultiSelectCheckbox extends InputWithOptions {
     return styles.readonly;
   }
 
-  _onSelect(option) {
-    super._onSelect(option);
+  _onSelect(option, isSelectedOption) {
+    this.showOptions();
+
+    if (this.closeOnSelect()) {
+      this.setState({showOptions: false});
+    }
+
+    if (isSelectedOption) {
+      this.setState({showOptions: false});
+    }
+
     if (this.isSelected(option)) {
       this.props.onDeselect && this.props.onDeselect(option.id);
     } else {

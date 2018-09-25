@@ -130,6 +130,7 @@ describe('multiSelectCheckbox', () => {
     const onSelect = jest.fn();
     const {dropdownLayoutDriver} = createDriver(<MultiSelectCheckbox options={options} onSelect={onSelect}/>);
     dropdownLayoutDriver.clickAtOption(0);
+    expect(onSelect.mock.calls.length).toBe(1);
     expect(onSelect).toHaveBeenCalledWith(options[0].value);
   });
 
