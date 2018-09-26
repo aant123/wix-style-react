@@ -55,8 +55,7 @@ $rowShadow: inset 0 1px 0 0 $D70;
 
 
 .table td {
-  font-weight: normal;
-  font-size: 14px;
+  @include Text($weight: thin, $size: small);
   color: $paletteD2;
 
   &.largeVerticalPadding {
@@ -70,7 +69,7 @@ $rowShadow: inset 0 1px 0 0 $D70;
   }
 
   &.td-text:not(.details) {
-    @include Text($weight: thin, $size: medium);
+    @include Text($weight: thin, $size: small);
   }
 }
 
@@ -99,8 +98,7 @@ $rowShadow: inset 0 1px 0 0 $D70;
 }
 
 .table td.important {
-  font-size: 16px;
-  color: $paletteD1;
+  @include Text($weight: thin, $size: medium);
 }
 
 .clickableDataRow {
